@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invitation de Sondor</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, #fffaf5, #f8e5eb);
+      color: #674b51;
+      text-align: center;
+    }
+    .card {
+      width: 85%;
+      max-width: 380px;
+      padding: 30px 20px;
+      background: white;
+      border: 1px solid #e8c9a5;
+      border-radius: 22px;
+      box-shadow: 0 8px 30px #b88a8a30;
+    }
+    h1 { font-size: 30px; }
+    input, button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    input { border: 1px solid #d9b9bd; }
+    button {
+      border: 0;
+      background: #d9a6b1;
+      color: white;
+      font-weight: bold;
+    }
+    #welcome { display: none; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div id="entry">
+      <p>UNE PETITE SURPRISE POUR TOI</p>
+      <h1>Invitation de Sondor</h1>
+      <p>Écris ton prénom pour découvrir ton invitation.</p>
+      <input id="name" placeholder="Ton prénom" maxlength="30">
+      <button onclick="showInvitation()">Découvrir mon invitation</button>
+    </div>
+    <div id="welcome">
+      <p>✨ Une invitation spéciale ✨</p>
+      <h1 id="greeting"></h1>
+      <p>Tu es invité(e) à fêter les 11 ans de Sondor !</p>
+      <p>J’ai hâte de te voir !</p>
+      <p>🎂 💗 🎉</p>
+    </div>
+  </main>
+  <script>
+    function showInvitation() {
+      const name = document.getElementById('name').value.trim();
+      if (!name) {
+        document.getElementById('name').focus();
+        return;
+      }
+      document.getElementById('greeting').textContent =
+        'Bonjour ' + name + ' !';
+      document.getElementById('entry').style.display = 'none';
+      document.getElementById('welcome').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
