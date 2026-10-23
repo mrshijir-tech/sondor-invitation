@@ -4,64 +4,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Invitation de Sondor</title>
+<title>Invitation de Sondor — 11 ans</title>
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;min-height:100vh;padding:24px 16px;
   display:flex;align-items:center;justify-content:center;
-  font-family:Georgia,serif;text-align:center;color:#8b5270;
-  background:linear-gradient(145deg,#fff8fc,#f5dce9,#fffafc)
+  font-family:Georgia,serif;text-align:center;color:#89506e;
+  background:linear-gradient(145deg,#fff8fc,#f4dce9,#fffafc);
 }
 .card{
-  width:100%;max-width:420px;background:#fff;
-  border:1px solid #edc8db;border-radius:26px;
-  padding:30px 22px;box-shadow:0 12px 36px #b77d982b
+  width:100%;max-width:440px;padding:28px 22px;
+  background:#fff;border:1px solid #edc7db;border-radius:25px;
+  box-shadow:0 12px 36px #b77d982b;
 }
-h1{font-size:29px;margin:8px 0 12px}
+h1{font-size:29px;margin:12px 0}
 p{line-height:1.6}
 input,button{
-  width:100%;padding:15px;margin-top:12px;
-  border-radius:13px;font-size:17px
+  width:100%;padding:14px;margin-top:12px;
+  border-radius:12px;font-size:16px;
 }
 input{border:1px solid #dfb5cb}
 button{
-  border:0;background:#d98bb2;color:white;
-  font-weight:bold;cursor:pointer
+  border:0;background:#d98bb2;color:#fff;
+  font-weight:bold;cursor:pointer;
 }
-#hello{display:none;font-size:25px;font-weight:bold}
-#video{display:none;margin-top:20px}
-iframe{width:100%;aspect-ratio:9/16;border:0;border-radius:16px}
-.small{font-size:14px}
+#invitation{display:none}
+#video{width:100%;height:65vh;max-height:600px;
+  border:0;border-radius:14px;margin-top:15px}
+.note{font-size:13px;color:#9c7a8c}
 </style>
 </head>
 <body>
-<div class="card">
+<main class="card">
   <div style="font-size:38px">🎀 ✨ 🎂</div>
+  <p>UNE INVITATION SPÉCIALE</p>
   <h1>Sondor fête ses 11 ans !</h1>
-  <p>Une journée magique se prépare…</p>
   <p>Écris ton prénom pour découvrir ton invitation personnelle.</p>
-  <input id="name" placeholder="Ton prénom" maxlength="35">
-  <button onclick="invite()">Découvrir mon invitation ✨</button>
-  <div id="hello">
-    <p id="greeting"></p>
-    <p class="small">J’ai hâte de fêter ça avec toi !</p>
+
+  <div id="form">
+    <input id="name" type="text" maxlength="35"
+      placeholder="Ton prénom" autocomplete="given-name">
+    <button onclick="showInvitation()">Découvrir mon invitation 💗</button>
   </div>
-  <div id="video">
-    <p>🎬 Voici mon invitation vidéo !</p>
-    <iframe id="player" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-  </div>
-</div>
+
+  <section id="invitation">
+    <h1 id="greeting"></h1>
+    <p>Tu es invité(e) à fêter les 11 ans de Sondor !</p>
+    <p>J’ai hâte de fêter ça avec toi !</p>
+    <p>Voici mon invitation vidéo :</p>
+    <iframe id="video"
+      src=""
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen></iframe>
+    <p class="note">Si la vidéo ne démarre pas, appuie sur Lecture.</p>
+  </section>
+</main>
+
 <script>
-function invite(){
-  const name=document.getElementById('name').value.trim();
-  if(!name){alert('Écris ton prénom !');return;}
-  document.getElementById('greeting').textContent='Tu es invitée, '+name+' ! 💗';
-  document.getElementById('hello').style.display='block';
-  document.getElementById('video').style.display='block';
-  document.getElementById('player').src=
-  'https://www.youtube-nocookie.com/embed/3vwz0X5sGpc?autoplay=1&playsinline=1';
+function showInvitation(){
+  const input=document.getElementById('name');
+  const name=input.value.trim();
+  if(!name){
+    input.focus();
+    alert('Écris ton prénom !');
+    return;
+  }
+
+  document.getElementById('greeting').textContent='Bonjour '+name+' !';
+  document.getElementById('form').style.display='none';
+  document.getElementById('invitation').style.display='block';
+
+  document.getElementById('video').src=
+    'https://drive.google.com/file/d/1bIfdIL-eJQDVbIRYFXA-xhh0GU17Q3H_/preview';
 }
+document.getElementById('name').addEventListener('keydown',function(e){
+  if(e.key==='Enter') showInvitation();
+});
 </script>
 </body>
 </html>
