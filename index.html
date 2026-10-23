@@ -1,78 +1,67 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Invitation de Sondor</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Georgia, serif;
-      background: linear-gradient(135deg, #fffaf5, #f8e5eb);
-      color: #674b51;
-      text-align: center;
-    }
-    .card {
-      width: 85%;
-      max-width: 380px;
-      padding: 30px 20px;
-      background: white;
-      border: 1px solid #e8c9a5;
-      border-radius: 22px;
-      box-shadow: 0 8px 30px #b88a8a30;
-    }
-    h1 { font-size: 30px; }
-    input, button {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 14px;
-      margin-top: 12px;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-    input { border: 1px solid #d9b9bd; }
-    button {
-      border: 0;
-      background: #d9a6b1;
-      color: white;
-      font-weight: bold;
-    }
-    #welcome { display: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invitation de Sondor</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:24px 16px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:Georgia,serif;text-align:center;color:#8b5270;
+  background:linear-gradient(145deg,#fff8fc,#f5dce9,#fffafc)
+}
+.card{
+  width:100%;max-width:420px;background:#fff;
+  border:1px solid #edc8db;border-radius:26px;
+  padding:30px 22px;box-shadow:0 12px 36px #b77d982b
+}
+h1{font-size:29px;margin:8px 0 12px}
+p{line-height:1.6}
+input,button{
+  width:100%;padding:15px;margin-top:12px;
+  border-radius:13px;font-size:17px
+}
+input{border:1px solid #dfb5cb}
+button{
+  border:0;background:#d98bb2;color:white;
+  font-weight:bold;cursor:pointer
+}
+#hello{display:none;font-size:25px;font-weight:bold}
+#video{display:none;margin-top:20px}
+iframe{width:100%;aspect-ratio:9/16;border:0;border-radius:16px}
+.small{font-size:14px}
+</style>
 </head>
 <body>
-  <main class="card">
-    <div id="entry">
-      <p>UNE PETITE SURPRISE POUR TOI</p>
-      <h1>Invitation de Sondor</h1>
-      <p>Écris ton prénom pour découvrir ton invitation.</p>
-      <input id="name" placeholder="Ton prénom" maxlength="30">
-      <button onclick="showInvitation()">Découvrir mon invitation</button>
-    </div>
-    <div id="welcome">
-      <p>✨ Une invitation spéciale ✨</p>
-      <h1 id="greeting"></h1>
-      <p>Tu es invité(e) à fêter les 11 ans de Sondor !</p>
-      <p>J’ai hâte de te voir !</p>
-      <p>🎂 💗 🎉</p>
-    </div>
-  </main>
-  <script>
-    function showInvitation() {
-      const name = document.getElementById('name').value.trim();
-      if (!name) {
-        document.getElementById('name').focus();
-        return;
-      }
-      document.getElementById('greeting').textContent =
-        'Bonjour ' + name + ' !';
-      document.getElementById('entry').style.display = 'none';
-      document.getElementById('welcome').style.display = 'block';
-    }
-  </script>
+<div class="card">
+  <div style="font-size:38px">🎀 ✨ 🎂</div>
+  <h1>Sondor fête ses 11 ans !</h1>
+  <p>Une journée magique se prépare…</p>
+  <p>Écris ton prénom pour découvrir ton invitation personnelle.</p>
+  <input id="name" placeholder="Ton prénom" maxlength="35">
+  <button onclick="invite()">Découvrir mon invitation ✨</button>
+  <div id="hello">
+    <p id="greeting"></p>
+    <p class="small">J’ai hâte de fêter ça avec toi !</p>
+  </div>
+  <div id="video">
+    <p>🎬 Voici mon invitation vidéo !</p>
+    <iframe id="player" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+<script>
+function invite(){
+  const name=document.getElementById('name').value.trim();
+  if(!name){alert('Écris ton prénom !');return;}
+  document.getElementById('greeting').textContent='Tu es invitée, '+name+' ! 💗';
+  document.getElementById('hello').style.display='block';
+  document.getElementById('video').style.display='block';
+  document.getElementById('player').src=
+  'https://www.youtube-nocookie.com/embed/3vwz0X5sGpc?autoplay=1&playsinline=1';
+}
+</script>
 </body>
 </html>
